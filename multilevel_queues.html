@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Multi-Level Queues - OS Demo</title>
+  <link rel="stylesheet" href="global.css" />
+  <link rel="stylesheet" href="multilevel_queues.css" />
+</head>
+<body>
+  <div class="bg-blob-1" style="background: var(--glow-purple);"></div>
+
+  <main>
+    <section class="hero glass-panel">
+      <h1 class="glow-text purple">Multi-Level Queues (MLQ)</h1>
+      <p class="subtitle">Fixed classification of processes into separate queues.</p>
+    </section>
+
+    <div class="app-layout">
+      <!-- Input Panel -->
+      <aside class="glass-panel input-panel">
+        <h3>Queue System</h3>
+        <div class="input-group">
+          <label>Mode</label>
+          <select id="modeSelect" class="input-field">
+            <option value="2">2-Level (Foreground RR(q=4) + Background FCFS)</option>
+            <option value="3">3-Level (Sys RR(q=2) + FG RR(q=4) + BG FCFS)</option>
+          </select>
+        </div>
+
+        <hr class="divider">
+
+        <h3>Add Process</h3>
+        <form id="addProcessForm" class="add-form">
+          <div class="input-group">
+            <label>Arrival Time</label>
+            <input type="number" id="arrTime" class="input-field" min="0" value="0" required />
+          </div>
+          <div class="input-group">
+            <label>Burst Time</label>
+            <input type="number" id="burstTime" class="input-field" min="1" value="5" required />
+          </div>
+          <div class="input-group" style="grid-column: 1 / -1;">
+            <label>Target Queue</label>
+            <select id="targetQueue" class="input-field">
+              <option value="1">Q1 (Highest Priority)</option>
+              <option value="2">Q2 (Medium/Low)</option>
+              <option value="3" id="q3Opt" style="display:none;">Q3 (Lowest Priority)</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-outline" style="grid-column: 1 / -1;">+ Add</button>
+        </form>
+
+        <hr class="divider">
+
+        <div class="action-buttons">
+          <button id="btnRun" class="btn btn-primary" style="flex:1;">Run Simulation</button>
+          <button id="btnClear" class="btn btn-outline">Reset</button>
+        </div>
+      </aside>
+
+      <!-- Output Panel -->
+      <section class="output-panel">
+        <div class="glass-panel queue-hierarchy">
+          <h3 class="glow-text">System Queues</h3>
+          <div id="q1Container" class="queue-level q-high">
+            <h4>Q1: System / Foreground</h4>
+            <div class="q-lanes"></div>
+          </div>
+          <div id="q2Container" class="queue-level q-med">
+            <h4>Q2: Background</h4>
+            <div class="q-lanes"></div>
+          </div>
+          <div id="q3Container" class="queue-level q-low" style="display: none;">
+            <h4>Q3: Batch</h4>
+            <div class="q-lanes"></div>
+          </div>
+        </div>
+
+        <div class="glass-panel canvas-panel">
+          <div style="display:flex; justify-content: space-between; align-items:center;">
+             <h3 class="glow-text purple">Execution Timeline</h3>
+             <span id="currentTimeDisplay" style="font-family: monospace; font-size: 1.2rem; display: none;">Time: 0</span>
+          </div>
+          <div class="canvas-container">
+            <canvas id="ganttCanvas"></canvas>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="shared.js"></script>
+  <script src="multilevel_queues.js"></script>
+</body>
+</html>

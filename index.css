@@ -1,0 +1,136 @@
+/* index.css */
+
+.hero {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+}
+
+.main-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.criteria-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.criteria-list li {
+  background: rgba(0,0,0,0.2);
+  padding: 1rem;
+  border-radius: 8px;
+  border-left: 4px solid var(--accent-purple);
+  transition: var(--transition-smooth);
+}
+
+.criteria-list li:hover {
+  transform: translateX(5px);
+  background: rgba(255,255,255,0.05);
+}
+
+.criteria-list strong {
+  color: var(--text-primary);
+  display: block;
+  margin-bottom: 0.2rem;
+  font-size: 1.1rem;
+}
+
+.formula {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-family: monospace;
+  background: rgba(139, 92, 246, 0.2);
+  color: #c4b5fd;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+}
+
+/* Diagram System */
+.diagram-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.canvas-container {
+  flex: 1;
+  width: 100%;
+  min-height: 350px;
+  background: rgba(0,0,0,0.3);
+  border-radius: 8px;
+  border: 1px solid var(--glass-border);
+  margin-top: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.diagram-controls {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+/* Alg grid links */
+.algo-grid {
+  margin-top: 2rem;
+}
+
+.algo-grid .cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.algo-card {
+  display: block;
+  background: rgba(0,0,0,0.2);
+  border: 1px solid var(--glass-border);
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: var(--transition-smooth);
+}
+
+.algo-card h3 {
+  color: var(--accent-green);
+  margin-bottom: 0.5rem;
+}
+
+.algo-card p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.algo-card:hover {
+  border-color: var(--accent-green);
+  box-shadow: 0 5px 20px rgba(16, 185, 129, 0.2);
+  transform: translateY(-5px);
+}
+
+@media (max-width: 900px) {
+  .main-grid {
+    grid-template-columns: 1fr;
+  }
+}

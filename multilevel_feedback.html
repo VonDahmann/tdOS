@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MLFQ - OS Demo</title>
+  <link rel="stylesheet" href="global.css" />
+  <link rel="stylesheet" href="multilevel_feedback.css" />
+</head>
+<body>
+  <div class="bg-blob-1" style="background: var(--glow-blue);"></div>
+  <div class="bg-blob-2" style="background: var(--glow-red);"></div>
+
+  <main>
+    <section class="hero glass-panel">
+      <h1 class="glow-text">Multi-Level Feedback Queue</h1>
+      <p class="subtitle">Watch processes dynamically demote: <br> Q1 (RR q=8) &rarr; Q2 (RR q=16) &rarr; Q3 (FCFS).</p>
+    </section>
+
+    <div class="app-layout">
+      <!-- Input Panel -->
+      <aside class="glass-panel input-panel">
+        <h3>Add Process</h3>
+        <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem;">All processes enter at Q1.</p>
+        <form id="addProcessForm" class="add-form">
+          <div class="input-group" style="grid-column: 1 / -1;">
+            <label>Burst Time</label>
+            <input type="number" id="burstTime" class="input-field" min="1" value="25" required />
+          </div>
+          <button type="submit" class="btn btn-outline" style="grid-column: 1 / -1;">+ Add</button>
+        </form>
+
+        <hr class="divider">
+
+        <div class="action-buttons">
+          <button id="btnRun" class="btn btn-primary" style="flex:1;">Run Simulation</button>
+          <button id="btnClear" class="btn btn-outline">Reset</button>
+        </div>
+      </aside>
+
+      <!-- Output Panel -->
+      <section class="output-panel">
+        <div class="glass-panel queue-hierarchy">
+          <div class="q-row">
+            <div class="q-label">Q1 <br><small>RR(q=8)</small></div>
+            <div class="q-lanes" id="q1Lanes"></div>
+          </div>
+          
+          <div class="arrow-down">&darr;</div>
+
+          <div class="q-row">
+            <div class="q-label">Q2 <br><small>RR(q=16)</small></div>
+            <div class="q-lanes" id="q2Lanes"></div>
+          </div>
+          
+          <div class="arrow-down">&darr;</div>
+
+          <div class="q-row">
+            <div class="q-label">Q3 <br><small>FCFS</small></div>
+            <div class="q-lanes" id="q3Lanes"></div>
+          </div>
+        </div>
+
+        <div class="glass-panel canvas-panel">
+          <div style="display:flex; justify-content: space-between; align-items:center;">
+             <h3 class="glow-text blue">Execution Timeline</h3>
+             <span id="currentTimeDisplay" style="font-family: monospace; font-size: 1.2rem; display: none;">Time: 0</span>
+          </div>
+          <div class="canvas-container">
+            <canvas id="ganttCanvas"></canvas>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="shared.js"></script>
+  <script src="multilevel_feedback.js"></script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Priority Scheduling Comparison - OS Demo</title>
+  <link rel="stylesheet" href="global.css" />
+  <link rel="stylesheet" href="priority_scheduling.css" />
+</head>
+<body>
+  <div class="bg-blob-1" style="background: var(--glow-red);"></div>
+
+  <main>
+    <section class="hero glass-panel">
+      <h1 class="glow-text red">Priority Scheduling</h1>
+      <p class="subtitle">Compare Preemptive vs Non-Preemptive approaches side-by-side.</p>
+    </section>
+
+    <div class="app-layout">
+      <!-- Input Panel -->
+      <aside class="glass-panel input-panel">
+        <h3>Add Processes</h3>
+        <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem;">Lower number = Higher Priority</p>
+        
+        <form id="addProcessForm" class="add-form">
+          <div class="input-group">
+            <label>Arrival (AT)</label>
+            <input type="number" id="arrTime" class="input-field" min="0" value="0" required />
+          </div>
+          <div class="input-group">
+            <label>Burst (BT)</label>
+            <input type="number" id="burstTime" class="input-field" min="1" value="5" required />
+          </div>
+          <div class="input-group" style="grid-column: 1 / -1;">
+            <label>Priority</label>
+            <input type="number" id="priority" class="input-field" min="0" value="1" required />
+          </div>
+          <button type="submit" class="btn btn-outline" style="grid-column: 1 / -1;">+ Add</button>
+        </form>
+
+        <hr class="divider">
+
+        <div class="table-container">
+          <table class="data-table" id="processTable">
+            <thead>
+              <tr><th>ID</th><th>AT</th><th>BT</th><th>Prio</th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+
+        <div class="action-buttons">
+          <button id="btnRun" class="btn btn-primary" style="flex:1;">Compare</button>
+          <button id="btnClear" class="btn btn-outline">Reset</button>
+        </div>
+      </aside>
+
+      <!-- Output Panel -->
+      <section class="output-panel">
+        
+        <!-- Non-Preemptive -->
+        <div class="glass-panel result-block">
+          <h3 class="glow-text">Non-Preemptive Priority</h3>
+          <div class="canvas-container">
+            <canvas id="ganttNP"></canvas>
+          </div>
+          <div class="metrics-grid small-metrics" id="metricsNP">
+            <div class="metric-card"><div class="metric-label">Avg TAT</div><div class="metric-val">0.0</div></div>
+            <div class="metric-card"><div class="metric-label">Avg WT</div><div class="metric-val">0.0</div></div>
+          </div>
+        </div>
+
+        <!-- Preemptive -->
+        <div class="glass-panel result-block" style="border-color: rgba(239, 68, 68, 0.4);">
+          <h3 class="glow-text red">Preemptive Priority</h3>
+          <div class="canvas-container">
+            <canvas id="ganttP"></canvas>
+          </div>
+          <div class="metrics-grid small-metrics" id="metricsP">
+            <div class="metric-card"><div class="metric-label">Avg TAT</div><div class="metric-val">0.0</div></div>
+            <div class="metric-card"><div class="metric-label">Avg WT</div><div class="metric-val">0.0</div></div>
+          </div>
+        </div>
+
+      </section>
+    </div>
+  </main>
+
+  <script src="shared.js"></script>
+  <script src="priority_scheduling.js"></script>
+</body>
+</html>

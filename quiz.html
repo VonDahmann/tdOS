@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OS Scheduling Quiz</title>
+  <link rel="stylesheet" href="global.css" />
+  <link rel="stylesheet" href="quiz.css" />
+</head>
+<body>
+  <div class="bg-blob-1" style="background: var(--glow-yellow);"></div>
+
+  <main>
+    <section class="hero glass-panel">
+      <h1 class="glow-text">OS Scheduling Quiz</h1>
+      <p class="subtitle">Test your knowledge on Process Scheduling Algorithms.</p>
+    </section>
+
+    <div class="glass-panel quiz-container" id="quizContainer">
+      <div id="quizHeader">
+        <span id="questionCounter">Question 1 / 10</span>
+        <span id="scoreDisplay">Score: 0</span>
+      </div>
+
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+
+      <div id="questionBox">
+        <h3 id="questionText">Loading question...</h3>
+        <div class="options-grid" id="optionsGrid">
+          <!-- Options injected by JS -->
+        </div>
+      </div>
+
+      <div id="feedbackBox" class="feedback-box" style="display: none;">
+        <p id="feedbackText"></p>
+        <button id="nextBtn" class="btn btn-primary">Next Question</button>
+      </div>
+    </div>
+
+    <!-- Results Panel -->
+    <div class="glass-panel results-panel" id="resultsPanel" style="display: none; text-align: center;">
+      <h2 class="glow-text green">Quiz Complete!</h2>
+      <div class="final-score" id="finalScore">8/10</div>
+      <p id="finalMessage" style="color: var(--text-secondary); margin-bottom: 2rem;">Great job!</p>
+      
+      <div class="action-buttons" style="justify-content: center;">
+        <button id="retryBtn" class="btn btn-primary">Retry Quiz</button>
+        <a href="index.html" class="btn btn-outline">Back to Home</a>
+      </div>
+    </div>
+  </main>
+
+  <script src="shared.js"></script>
+  <script src="quiz.js"></script>
+</body>
+</html>

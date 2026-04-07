@@ -1,0 +1,67 @@
+/* priority_scheduling.css */
+
+.app-layout {
+  display: flex;
+  gap: 2rem;
+}
+
+.input-panel {
+  flex: 0 0 300px;
+}
+
+.output-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  min-width: 0;
+}
+
+.add-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.divider {
+  border: 0;
+  height: 1px;
+  background: var(--glass-border);
+  margin: 1.5rem 0;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.result-block {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.canvas-container {
+  height: 100px;
+  background: rgba(0,0,0,0.5);
+  border-radius: 8px;
+  border: 1px solid var(--glass-border);
+  position: relative;
+  overflow: hidden;
+}
+
+.small-metrics.metrics-grid {
+  grid-template-columns: repeat(2, 1fr);
+  margin-top: 0;
+  gap: 0.5rem;
+}
+.small-metrics .metric-card {
+  padding: 0.5rem;
+}
+.small-metrics .metric-val {
+  font-size: 1.2rem;
+}
+
+@media (max-width: 900px) {
+  .app-layout { flex-direction: column; }
+}

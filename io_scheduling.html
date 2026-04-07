@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>I/O Scheduling - OS Demo</title>
+  <link rel="stylesheet" href="global.css" />
+  <link rel="stylesheet" href="io_scheduling.css" />
+</head>
+<body>
+  <div class="bg-blob-1" style="background: var(--glow-cyan);"></div>
+  <div class="bg-blob-2" style="background: var(--glow-purple);"></div>
+
+  <main>
+    <section class="hero glass-panel">
+      <h1 class="glow-text cyan">Scheduling with I/O</h1>
+      <p class="subtitle">Visualize processes transitioning between CPU Bursts and I/O Waits.</p>
+    </section>
+
+    <div class="app-layout">
+      <!-- Input Panel -->
+      <aside class="glass-panel input-panel">
+        <h3>1. Algorithm</h3>
+        <div class="input-group">
+          <label for="algoSelect">Select Core Algorithm</label>
+          <select id="algoSelect" class="input-field">
+            <option value="FCFS">First Come First Serve (FCFS)</option>
+            <option value="RR">Round Robin (RR)</option>
+          </select>
+        </div>
+        <div class="input-group" id="quantumGroup" style="display: none;">
+          <label for="timeQuantum">Time Quantum</label>
+          <input type="number" id="timeQuantum" class="input-field" value="2" min="1" />
+        </div>
+
+        <hr class="divider">
+
+        <h3>2. Device Model</h3>
+        <div class="input-group">
+          <label for="ioModelSelect">I/O Device Allocation</label>
+          <select id="ioModelSelect" class="input-field">
+            <option value="SHARED">Shared I/O Device (Queue formatting)</option>
+            <option value="PER_PROCESS">Per-Process I/O (Independent wait)</option>
+          </select>
+        </div>
+
+        <hr class="divider">
+
+        <h3>3. Add Process</h3>
+        <form id="addProcessForm" class="add-form">
+          <div class="input-group">
+            <label>Arrival Time</label>
+            <input type="number" id="arrTime" class="input-field" min="0" value="0" required />
+          </div>
+          <div class="input-group">
+            <label>CPU Burst 1</label>
+            <input type="number" id="burst1" class="input-field" min="1" value="3" required />
+          </div>
+          <div class="input-group">
+            <label>I/O Burst</label>
+            <input type="number" id="ioBurst" class="input-field" min="1" value="2" required />
+          </div>
+          <div class="input-group">
+            <label>CPU Burst 2</label>
+            <input type="number" id="burst2" class="input-field" min="1" value="1" required />
+          </div>
+          <button type="submit" class="btn btn-outline" style="grid-column: 1 / -1;">+ Add Process</button>
+        </form>
+
+        <hr class="divider">
+
+        <div class="action-buttons">
+          <button id="btnRun" class="btn btn-primary" style="flex:1;">Play Simulation</button>
+          <button id="btnClear" class="btn btn-outline">Reset</button>
+        </div>
+      </aside>
+
+      <!-- Output Panel -->
+      <section class="output-panel">
+        
+        <!-- Queue Visualizations -->
+        <div class="queue-container">
+          <div class="glass-panel queue-box">
+            <h4 class="glow-text blue">Ready Queue</h4>
+            <div class="queue-lanes" id="readyQueueContainer"></div>
+          </div>
+          <div class="queue-center">
+            <div class="device-box cpu-box" id="cpuBox">CPU</div>
+            <div class="device-box io-box" id="ioDeviceBox">I/O Device</div>
+          </div>
+          <div class="glass-panel queue-box">
+            <h4 class="glow-text purple">Blocked/Wait Queue</h4>
+            <div class="queue-lanes" id="waitQueueContainer"></div>
+          </div>
+        </div>
+
+        <div class="glass-panel canvas-panel">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h3 class="glow-text cyan">Execution Timeline</h3>
+            <span id="currentTimeDisplay" style="font-family: monospace; font-size: 1.2rem; display: none;">Time: 0</span>
+          </div>
+          <div class="canvas-container" style="height: 150px; margin-top: 1rem;">
+            <canvas id="ganttCanvas"></canvas>
+          </div>
+        </div>
+
+      </section>
+    </div>
+  </main>
+
+  <script src="shared.js"></script>
+  <script src="io_scheduling.js"></script>
+</body>
+</html>

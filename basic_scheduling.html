@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Basic Scheduling - OS Demo</title>
+  <link rel="stylesheet" href="global.css" />
+  <link rel="stylesheet" href="basic_scheduling.css" />
+</head>
+<body>
+  <div class="bg-blob-1"></div>
+  <div class="bg-blob-2" style="background: var(--glow-green);"></div>
+
+  <main>
+    <section class="hero glass-panel">
+      <h1 class="glow-text green">Basic CPU Scheduling</h1>
+      <p class="subtitle">Simulate FCFS, SJF, Priority, and Round Robin without I/O blocking.</p>
+    </section>
+
+    <div class="app-layout">
+      <!-- Input Panel -->
+      <aside class="glass-panel input-panel">
+        <h3>1. Configure Settings</h3>
+        <div class="input-group">
+          <label for="algoSelect">Algorithm</label>
+          <select id="algoSelect" class="input-field">
+            <option value="FCFS">First Come First Serve (FCFS)</option>
+            <option value="SJF">Shortest Job First (SJF - Non-Preemptive)</option>
+            <option value="SRTF">Shortest Remaining Time First (SRTF - Preemptive)</option>
+            <option value="PRIORITY_NP">Priority (Non-Preemptive)</option>
+            <option value="RR">Round Robin (RR)</option>
+          </select>
+        </div>
+
+        <div class="input-group" id="quantumGroup" style="display: none;">
+          <label for="timeQuantum">Time Quantum (q)</label>
+          <input type="number" id="timeQuantum" class="input-field" value="2" min="1" />
+        </div>
+
+        <hr class="divider">
+
+        <h3>2. Add Processes</h3>
+        <form id="addProcessForm" class="add-form">
+          <div class="input-group">
+            <label>Arrival Time</label>
+            <input type="number" id="arrTime" class="input-field" min="0" value="0" required />
+          </div>
+          <div class="input-group">
+            <label>Burst Time</label>
+            <input type="number" id="burstTime" class="input-field" min="1" value="5" required />
+          </div>
+          <div class="input-group">
+            <label>Priority (Lower number = Higher Priority)</label>
+            <input type="number" id="priority" class="input-field" min="0" value="0" />
+          </div>
+          <button type="submit" class="btn btn-outline" style="width: 100%; margin-top: 0.5rem;">+ Add Process</button>
+        </form>
+
+        <hr class="divider">
+
+        <h3>3. Process Table</h3>
+        <div class="table-container">
+          <table class="data-table" id="processTable">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>AT</th>
+                <th>BT</th>
+                <th>Prio</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Processes inserted here -->
+            </tbody>
+          </table>
+        </div>
+
+        <div class="action-buttons">
+          <button id="btnRun" class="btn btn-primary" style="flex:1;">Run Simulation</button>
+          <button id="btnClear" class="btn btn-outline">Reset</button>
+        </div>
+      </aside>
+
+      <!-- Output Panel -->
+      <section class="output-panel">
+        <div class="glass-panel canvas-panel">
+          <h3 class="glow-text">Gantt Chart</h3>
+          <div class="canvas-container">
+            <canvas id="ganttCanvas"></canvas>
+          </div>
+          
+          <div class="sim-controls">
+            <button id="btnStep" class="btn btn-outline"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><polygon points="5 4 15 12 5 20 5 4"></polygon><line x1="19" y1="5" x2="19" y2="19"></line></svg> Step-by-Step Mode</button>
+            <span id="currentTimeDisplay" style="margin-left:auto; font-family: monospace; font-size: 1.1rem; color: var(--accent-green);">Time: 0</span>
+          </div>
+        </div>
+
+        <div class="glass-panel results-panel">
+          <h3 class="glow-text">Performance Metrics</h3>
+          
+          <div class="table-container" style="margin-top: 1rem;">
+            <table class="data-table" id="metricsTable">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>CT (Completion)</th>
+                  <th>TAT (Turnaround)</th>
+                  <th>WT (Waiting)</th>
+                  <th>RT (Response)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Results -->
+              </tbody>
+            </table>
+          </div>
+
+          <div class="metrics-grid">
+            <div class="metric-card">
+              <div class="metric-label">Avg Turnaround Time</div>
+              <div class="metric-val text-blue" id="avgTat">0.00</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">Avg Waiting Time</div>
+              <div class="metric-val text-red" id="avgWt">0.00</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">Avg Response Time</div>
+              <div class="metric-val text-purple" id="avgRt">0.00</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="shared.js"></script>
+  <script src="basic_scheduling.js"></script>
+</body>
+</html>

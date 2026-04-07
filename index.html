@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OS Scheduling - Introduction</title>
+  <link rel="stylesheet" href="global.css" />
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+  <div class="bg-blob-1"></div>
+  <div class="bg-blob-2"></div>
+
+  <main>
+    <section class="hero glass-panel">
+      <h1 class="glow-text">Process Management & Scheduling</h1>
+      <p class="subtitle">An interactive visualization of Operating Systems scheduling algorithms.</p>
+    </section>
+
+    <div class="main-grid">
+      <section class="glass-panel criteria-panel">
+        <h2 class="glow-text purple">Performance Criteria</h2>
+        <ul class="criteria-list">
+          <li>
+            <strong>Arrival Time:</strong> The exact time when a process enters the Ready Queue.
+          </li>
+          <li>
+            <strong>Burst Time:</strong> The total CPU time a process requires to finish execution.
+          </li>
+          <li>
+            <strong>Turnaround Time (ATT):</strong> Total time a process spends in the system from arrival to termination.<br>
+            <span class="formula">Turnaround Time = Completion Time - Arrival Time</span>
+          </li>
+          <li>
+            <strong>Waiting Time (AWT):</strong> The total time a process spends waiting in the Ready queue.<br>
+            <span class="formula">Waiting Time = Turnaround Time - Burst Time</span>
+          </li>
+          <li>
+            <strong>Response Time (ART):</strong> Time from when a process arrives until it gets the CPU for the first time.<br>
+            <span class="formula">Response Time = First CPU Start - Arrival Time</span>
+          </li>
+        </ul>
+      </section>
+
+      <section class="glass-panel diagram-panel">
+        <h2 class="glow-text blue">Process State Life Cycle</h2>
+        <div class="canvas-container">
+          <canvas id="stateDiagram"></canvas>
+        </div>
+        <div class="diagram-controls">
+          <button id="btnAnimate" class="btn btn-primary">Animate Process Flow</button>
+        </div>
+      </section>
+    </div>
+
+    <section class="glass-panel algo-grid">
+      <h2 class="glow-text green">Algorithms Explored</h2>
+      <div class="cards">
+        <a href="basic_scheduling.html" class="algo-card">
+          <h3>Basic Scheduling</h3>
+          <p>FCFS, SJF, Priority, and Round Robin simulations without I/O.</p>
+        </a>
+        <a href="io_scheduling.html" class="algo-card">
+          <h3>Scheduling with I/O</h3>
+          <p>Explore processes alternating between CPU bursts and I/O waiting.</p>
+        </a>
+        <a href="priority_scheduling.html" class="algo-card">
+          <h3>Priority Scheduling</h3>
+          <p>Compare Preemptive vs Non-Preemptive based on priority.</p>
+        </a>
+        <a href="multilevel_queues.html" class="algo-card">
+          <h3>Multi-Level Queues</h3>
+          <p>Foreground logic mapped to Background streams.</p>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <script src="shared.js"></script>
+  <script src="index.js"></script>
+</body>
+</html>

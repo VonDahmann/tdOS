@@ -1,0 +1,109 @@
+/* quiz.css */
+
+.quiz-container {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+#quizHeader {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+.progress-bar {
+  height: 6px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 3px;
+  margin-bottom: 2rem;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--accent-blue);
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+#questionText {
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.4;
+  color: #fff;
+}
+
+.options-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+
+.option-btn {
+  background: rgba(0,0,0,0.3);
+  border: 1px solid var(--glass-border);
+  padding: 1rem;
+  border-radius: 8px;
+  color: var(--text-primary);
+  text-align: left;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.option-btn:hover {
+  background: rgba(255,255,255,0.05);
+  border-color: var(--accent-blue);
+  transform: translateX(5px);
+}
+
+.option-btn.correct {
+  background: rgba(16, 185, 129, 0.2);
+  border-color: var(--accent-green);
+  color: #fff;
+}
+
+.option-btn.wrong {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: var(--accent-red);
+}
+
+.option-btn:disabled {
+  cursor: not-allowed;
+  transform: none;
+}
+
+.feedback-box {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border-radius: 8px;
+  background: rgba(0,0,0,0.3);
+  border-left: 4px solid var(--accent-blue);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  animation: fadeIn 0.3s ease;
+}
+
+.feedback-box.correct { border-left-color: var(--accent-green); }
+.feedback-box.wrong { border-left-color: var(--accent-red); }
+
+#feedbackText { margin: 0; font-weight: 500; }
+
+.final-score {
+  font-size: 4rem;
+  font-weight: 700;
+  margin: 1rem 0;
+  background: linear-gradient(to right, var(--accent-blue), var(--accent-green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
